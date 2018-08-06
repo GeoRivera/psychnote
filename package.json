@@ -1,0 +1,49 @@
+{
+  "name": "psychnote",
+  "version": "0.0.1",
+  "private": true,
+  "directories": {},
+  "dependencies": {
+    "babel-plugin-minify-dead-code-elimination": "^0.4.3",
+    "babel-plugin-minify-mangle-names": "^0.4.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-minify": "^0.4.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
+    "babel-plugin-transform-es3-property-literals": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.4.3",
+    "babelrc-rollup": "^3.0.0",
+    "core-js": "^2.5.7",
+    "cross-env": "^5.2.0",
+    "rollup": "^0.63.5",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-closure-compiler-js": "^1.0.6",
+    "rollup-plugin-commonjs": "^9.1.4",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "scripts": {
+    "lib": "cross-env NODE_ENV=development babel src/lib/evolvcfs.js -o lib/evolvcfs.js",
+    "lib:min": "cross-env NODE_ENV=production babel src/lib/evolvcfs.js -o lib/evolvcfs.min.js",
+    "lib:prod": "npm run lib && npm run lib:min",
+    "forms": "cross-env NODE_ENV=development babel src/forms -d es3/forms",
+    "forms:min": "cross-env NODE_ENV=escapemin babel src/forms -d es3/forms_min",
+    "forms:prod": "npm run forms && npm run forms:min",
+    "utils": "cross-env NODE_ENV=development babel src/utils -d es3/utils",
+    "utils:min": "cross-env NODE_ENV=production babel src/utils -d es3/utils_min",
+    "utils:prod": "npm run utils && npm run utils:min",
+    "escjs": "cross-env NODE_ENV=escape babel",
+    "escjsmin": "cross-env NODE_ENV=escapemin babel",
+    "build": "cross-env NODE_ENV=production babel src -d dist",
+    "sandbox": "cross-env NODE_ENV=development rollup --config rollup.sandbox.config.js",
+    "psychnote": "cross-env NODE_ENV=development rollup --config rollup.psychiatry_note.config.js && npm run oops",
+    "oops": "babel dist/psychiatry_note.js --out-file dist/psychnote_esc.js --plugins=../escape-js-html.js --presets=minify"
+  },
+  "author": "George Rivera",
+  "license": "ISC",
+  "description": ""
+}
